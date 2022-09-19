@@ -21,7 +21,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   let isInitialize = false;
-  const initialize = async() => {
+  const initializeAuth = async() => {
     if (isInitialize) {
       return
     }
@@ -38,6 +38,6 @@ export const useAuthStore = defineStore('auth', () => {
     isLoggedIn,
     logIn,
     logOut,
-    initialize,
+    initializeAuth,
   }
 });

@@ -22,9 +22,9 @@ const router = createRouter({
 });
 
 router.beforeEach(async(to, from, next) => {
-  const { isLoggedIn, initialize } = useAuthStore();
+  const { isLoggedIn, initializeAuth } = useAuthStore();
 
-  await initialize();
+  await initializeAuth();
 
   if (to.name === 'Login') {
     if (isLoggedIn()) {
