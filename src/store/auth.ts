@@ -20,10 +20,15 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = null;
   }
 
-  const initAuth = async() => {
+  let isInitialize = false;
+  const initialize = async() => {
+    if (isInitialize) {
+      return
+    }
     return new Promise<void>((resolve) => {
       onAuthStateChanged(auth, (_user) => {
         user.value = _user;
+        isInitialize = true;
         resolve();
       })
     });
@@ -33,6 +38,6 @@ export const useAuthStore = defineStore('auth', () => {
     isLoggedIn,
     logIn,
     logOut,
-    initAuth,
+    initialize,
   }
 });
