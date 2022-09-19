@@ -1,7 +1,20 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/store/auth'
 import HelloWorld from '@/components/HelloWorld.vue'
+
+const router = useRouter()
+const { logOut } = useAuthStore()
+
+const onClick = async() => {
+  await logOut()
+
+  router.replace({
+    name: 'Login'
+  })
+}
 </script>
 
 <template>
@@ -14,6 +27,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <button type="button" @click="onClick">Log out</button>
 </template>
 
 <style scoped>
